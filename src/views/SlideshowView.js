@@ -4,15 +4,13 @@ define(function(require, exports, module){
 	var Transform = require('famous/core/Transform');
 	var StateModifier = require('famous/modifiers/StateModifier');
 
-	function AppView () {
+	function SlideshowView () {
  		Views.apply(this, arguments);
- 		var slideShowView = new SlideshowView();
- 		this.add(slideShowView);
 	}
 
-	AppView.prototype = Object.create(Views.prototype);
-	AppView.prototype.constructor = AppView;
+	SlideshowView.prototype = Object.create(Views.prototype);
+	SlideshowView.prototype.constructor = SlideshowView;
 
-	AppView.DEFAULT_OPTIONS = {};
-	module.exports = AppView;
+	SlideshowView.DEFAULT_OPTIONS = {};
+	module.exports = SlideshowView;
 });
