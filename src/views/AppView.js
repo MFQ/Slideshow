@@ -8,13 +8,15 @@ define(function(require, exports, module){
 
 	function AppView () {
  		Views.apply(this, arguments);
- 		var slideShowView = new SlideshowView();
+ 		var slideShowView = new SlideshowView({ data : this.options.data });
  		this.add(slideShowView);
 	}
 
 	AppView.prototype = Object.create(Views.prototype);
 	AppView.prototype.constructor = AppView;
 
-	AppView.DEFAULT_OPTIONS = {};
+	AppView.DEFAULT_OPTIONS = {
+		data: undefined
+	};
 	module.exports = AppView;
 });
