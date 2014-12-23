@@ -40,8 +40,6 @@ define(function(require, exports, module){
 	module.exports = SlideshowView;
 
 	SlideshowView.prototype.showCurrentSlide = function(){
-		console.log(this.currentIndex);
-		debugger
 		var slide = this.slides[this.currentIndex];
         this.lightbox.show(slide);
 	}
