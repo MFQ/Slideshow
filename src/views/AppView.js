@@ -4,13 +4,13 @@ define(function(require, export, module){
 	var Transform = require('famous/core/Transform');
 	var StateModifier = require('famous/modifiers/StateModifier');
 
-	function EmptyView () {
+	function AppView () {
 		this.apply(this, arguments)
 	}
 
-	EmptyView.prototype = Object.create(View.prototype);
-	EmptyView.prototype.constructor = EmptyView;
+	AppView.prototype = Object.create(View.prototype);
+	AppView.prototype.constructor = AppView;
 
-	EmptyView.DEFAULT_OPTIONS = {};
-	module.exports = EmptyView;
+	AppView.DEFAULT_OPTIONS = {};
+	module.exports = AppView;
 });
