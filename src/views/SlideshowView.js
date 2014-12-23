@@ -3,6 +3,7 @@ define(function(require, exports, module){
 	var Surface = require('famous/core/Surface');
 	var Transform = require('famous/core/Transform');
 	var StateModifier = require('famous/modifiers/StateModifier');
+	var SlideView = require('views/SlideView');
 
 	function SlideshowView () {
  		Views.apply(this, arguments);

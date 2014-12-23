@@ -4,6 +4,8 @@ define(function(require, exports, module){
 	var Transform = require('famous/core/Transform');
 	var StateModifier = require('famous/modifiers/StateModifier');
 
+	var SlideshowView = require('views/SlideshowView');
+
 	function AppView () {
  		Views.apply(this, arguments);
  		var slideShowView = new SlideshowView();
