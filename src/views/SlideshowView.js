@@ -5,6 +5,7 @@ define(function(require, exports, module){
 	var StateModifier = require('famous/modifiers/StateModifier');
 	var SlideView = require('views/SlideView');
     var Lightbox = require('famous/views/Lightbox');
+    var Easing = require('famous/transitions/Easing');
 
 	function SlideshowView () {
  		Views.apply(this, arguments);
@@ -22,7 +23,18 @@ define(function(require, exports, module){
 
 	SlideshowView.DEFAULT_OPTIONS = {
 		size: [450, 500],
-		lightboxOpts:{},
+		lightboxOpts:{
+			inTransform: Transform.rotateY(0.5),
+            inOpacity: 1,
+            inOrigin: [0, 0],
+            showOrigin: [0, 0],
+            outTransform: Transform.rotateY(-Math.PI/2),
+            outOpacity: 1,
+            outOrigin: [0, 0],
+            inTransition: { duration: 500, curve: 'linear' },
+            outTransition: { duration: 700, curve: 'linear' },
+            overlap: true
+		},
 		data: undefined
 	};
 	module.exports = SlideshowView;

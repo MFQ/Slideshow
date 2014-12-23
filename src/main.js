@@ -9,6 +9,7 @@ define(function(require, exports, module) {
  	function initApp(data){
  		data = SlideData.parse(data);
 		var appView = new AppView({ data : data });
+		mainContext.setPerspective(1000);
 		mainContext.add(appView);
  	}
 });
