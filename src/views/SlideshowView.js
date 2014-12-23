@@ -28,8 +28,17 @@ define(function(require, exports, module){
 	module.exports = SlideshowView;
 
 	SlideshowView.prototype.showCurrentSlide = function(){
+		console.log(this.currentIndex);
+		debugger
 		var slide = this.slides[this.currentIndex];
         this.lightbox.show(slide);
+	}
+
+	SlideshowView.prototype.showNextSlide = function(){
+		this.currentIndex++;
+		if(this.currentIndex === this.slides.length)
+			this.currentIndex=0;
+		this.showCurrentSlide();
 	}
 
 	function _createSlides(){
@@ -39,8 +48,9 @@ define(function(require, exports, module){
 
 			var slide = new SlideView({
 				size: this.options.size,
-				photoURL: this.options.data[i]
+				photoUrl: this.options.data[i]
 			});
+			slide.on('nextSlide', this.showNextSlide.bind(this));
 			this.slides.push(slide);
 		}
 		this.showCurrentSlide();
