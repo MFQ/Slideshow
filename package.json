@@ -1,0 +1,25 @@
+{
+  "name": "slideShow",
+  "version": "1.0.0",
+  "description": "famo.us slideshow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MFQ/Slideshow.git"
+  },
+  "author": "MFQ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MFQ/Slideshow/issues"
+  },
+  "homepage": "https://github.com/MFQ/Slideshow",
+  "dependencies": {
+    "consolidate": "^0.10.0",
+    "ejs": "^1.0.0",
+    "express": "^4.10.6",
+    "hogan": "^1.0.2"
+  }
+}
