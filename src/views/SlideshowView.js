@@ -24,16 +24,15 @@ define(function(require, exports, module){
 	SlideshowView.DEFAULT_OPTIONS = {
 		size: [450, 500],
 		lightboxOpts:{
-			inTransform: Transform.rotateY(0.5),
-            inOpacity: 1,
+			inOpacity: 1,
+            outOpacity: 0,
             inOrigin: [0, 0],
-            showOrigin: [0, 0],
-            outTransform: Transform.rotateY(-Math.PI/2),
-            outOpacity: 1,
             outOrigin: [0, 0],
-            inTransition: { duration: 500, curve: 'linear' },
-            outTransition: { duration: 700, curve: 'linear' },
-            overlap: true
+            showOrigin: [0, 0],
+            inTransform: Transform.thenMove(Transform.rotateX(0.9), [0, -300, 0]),
+            outTransform: Transform.thenMove(Transform.rotateZ(0.7), [0, window.innerHeight, -1000]),
+            inTransition: { duration: 650, curve: 'easeOut' },
+            outTransition: { duration: 500, curve: Easing.inCubic }
 		},
 		data: undefined
 	};

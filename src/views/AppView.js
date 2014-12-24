@@ -4,7 +4,6 @@ define(function(require, exports, module){
 	var Transform = require('famous/core/Transform');
 	var StateModifier = require('famous/modifiers/StateModifier');
 	var ImageSurface = require('famous/surfaces/ImageSurface');
-
 	var SlideshowView = require('views/SlideshowView');
 
 	function AppView () {
@@ -22,7 +21,9 @@ define(function(require, exports, module){
 		data: undefined,
         cameraWidth: 0.6 * window.innerHeight
 	};
-	module.exports = AppView;
+	AppView.DEFAULT_OPTIONS.slideWidth = 0.8 * AppView.DEFAULT_OPTIONS.cameraWidth;
+    AppView.DEFAULT_OPTIONS.slideHeight = AppView.DEFAULT_OPTIONS.slideWidth + 40;
+    AppView.DEFAULT_OPTIONS.slidePosition = 0.77 * AppView.DEFAULT_OPTIONS.cameraWidth;
 
 	function _createSlideshow() {
         var slideshowView = new SlideshowView({
@@ -31,9 +32,9 @@ define(function(require, exports, module){
         });
 
         var slideshowModifier = new StateModifier({
-            origin: [0.5, 0],
-            align: [0.5, 0],
-            transform: Transform.translate(0, this.options.slidePosition, 0)
+            origin: [0.3, 0],
+            align: [0.3, 0],
+            transform: Transform.translate(0, this.options.slidePosition - 200, 0)
         });
 
         this.add(slideshowModifier).add(slideshowView);
@@ -55,10 +56,8 @@ define(function(require, exports, module){
         });
 
         this.add(cameraModifier).add(camera);
-
-        AppView.DEFAULT_OPTIONS.slideWidth = 0.8 * AppView.DEFAULT_OPTIONS.cameraWidth;
-    	AppView.DEFAULT_OPTIONS.slideHeight = AppView.DEFAULT_OPTIONS.slideWidth + 40;
-    	AppView.DEFAULT_OPTIONS.slidePosition = 0.77 * AppView.DEFAULT_OPTIONS.cameraWidth;
-    	
     }
+
+    module.exports = AppView;
+
 });
