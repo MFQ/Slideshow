@@ -13,6 +13,8 @@ define(function(require, exports, module){
 	function SlideView () {
  		Views.apply(this, arguments);
  		this.rootModifier = new StateModifier({
+ 			align: [0.5, 0.0],
+            origin: [0.5, 0.0],
  			size: this.options.size
         });
         this.mainNode = this.add(this.rootModifier);
@@ -55,7 +57,7 @@ define(function(require, exports, module){
         var filmModifier = new StateModifier({
             origin: [0.5, 0],
             align: [0.5, 0],
-            transform: Transform.translate(0, this.options.filmBorder, 1)
+            transform: Transform.translate(0, this.options.filmBorder, 0.05)
         });
 
         this.mainNode.add(filmModifier).add(film);
@@ -71,7 +73,6 @@ define(function(require, exports, module){
         });
         this.mainNode.add(background);
         background.on('click', function() {
-            // the event output handler is used to broadcast outwards
             this._eventOutput.emit('nextSlide');
         }.bind(this));
 	}

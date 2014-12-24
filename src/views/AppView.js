@@ -20,7 +20,7 @@ define(function(require, exports, module){
 
 	AppView.DEFAULT_OPTIONS = {
 		data: undefined,
-        cameraWidth: 0.6 * window.innerHeight
+        cameraWidth: 0.5 * window.innerHeight
 	};
 	AppView.DEFAULT_OPTIONS.slideWidth = 0.8 * AppView.DEFAULT_OPTIONS.cameraWidth;
     AppView.DEFAULT_OPTIONS.slideHeight = AppView.DEFAULT_OPTIONS.slideWidth + 40;
@@ -35,7 +35,7 @@ define(function(require, exports, module){
         var slideshowModifier = new StateModifier({
             origin: [0.5, 0],
             align: [0.5, 0],
-            transform: Transform.translate(0, this.options.slidePosition, 0)
+            transform: Transform.translate(500, this.options.slidePosition, 0)
         });
 
         var slideshowContainer = new ContainerSurface({

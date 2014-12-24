@@ -36,7 +36,6 @@ define(function(require, exports, module){
 		},
 		data: undefined
 	};
-	module.exports = SlideshowView;
 
 	SlideshowView.prototype.showCurrentSlide = function(){
 		this.ready = false;
@@ -77,4 +76,6 @@ define(function(require, exports, module){
 		this.lightbox = new Lightbox(this.options.lightboxOpts);
 		this.mainNode.add(this.lightbox);
 	}
+	
+	module.exports = SlideshowView;
 });
