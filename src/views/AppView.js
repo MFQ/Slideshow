@@ -5,6 +5,7 @@ define(function(require, exports, module){
 	var StateModifier = require('famous/modifiers/StateModifier');
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var SlideshowView = require('views/SlideshowView');
+	var ContainerSurface = require('famous/surfaces/ContainerSurface');
 
 	function AppView () {
  		Views.apply(this, arguments);
@@ -32,12 +33,21 @@ define(function(require, exports, module){
         });
 
         var slideshowModifier = new StateModifier({
-            origin: [0.3, 0],
-            align: [0.3, 0],
-            transform: Transform.translate(0, this.options.slidePosition - 200, 0)
+            origin: [0.5, 0],
+            align: [0.5, 0],
+            transform: Transform.translate(0, this.options.slidePosition, 0)
         });
 
-        this.add(slideshowModifier).add(slideshowView);
+        var slideshowContainer = new ContainerSurface({
+            properties: {
+                overflow: 'hidden'
+            }
+        });
+
+        this.add(slideshowModifier).add(slideshowContainer);
+        slideshowContainer.add(slideshowView);
+        slideshowContainer.context.setPerspective(1000);
+
     }
 
 	function _createCamera() {

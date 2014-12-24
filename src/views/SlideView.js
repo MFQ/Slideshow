@@ -5,6 +5,9 @@ define(function(require, exports, module){
 	var StateModifier = require('famous/modifiers/StateModifier');
 	var SlideData = require('data/SlideData');
 	var ImageSurface = require('famous/surfaces/ImageSurface');
+	var Transitionable   = require('famous/transitions/Transitionable');
+    var SpringTransition = require('famous/transitions/SpringTransition');
+
 
 
 	function SlideView () {
@@ -32,7 +35,8 @@ define(function(require, exports, module){
 		this.photoModifier = new StateModifier({
 			origin:[0.5, 0],
 			align:[0.5, 0],
-			transform: Transform.translate(0, this.options.filmBorder + this.options.photoBorder, 2)
+			transform: Transform.translate(0, this.options.filmBorder + this.options.photoBorder, 0.1),
+            opacity: 0.01
 		});
 		this.mainNode.add(this.photoModifier).add(photo);
 	}
@@ -61,7 +65,8 @@ define(function(require, exports, module){
 		var background = new Surface({
         	properties: {
                 backgroundColor: '#FFFFF5',
-                boxShadow: '0 10px 20px -5px rgba(0, 0, 0, 0.5)'
+                boxShadow: '0 10px 20px -5px rgba(0, 0, 0, 0.5)',
+                cursor: 'pointer'
             }
         });
         this.mainNode.add(background);
@@ -74,11 +79,31 @@ define(function(require, exports, module){
 	SlideView.prototype = Object.create(Views.prototype);
 	SlideView.prototype.constructor = SlideView;
 
+	SlideView.prototype.fadeIn = function(){
+		this.photoModifier.setOpacity(1, {
+			duration: 1500,
+			curve: 'easeIn'
+		});
+	}
+
+	SlideView.prototype.shake = function(){
+		this.rootModifier.halt();
+		this.rootModifier.setTransform(
+            Transform.rotateX(this.options.angle),
+            { duration: 200, curve: 'easeOut' }
+        );
+        this.rootModifier.setTransform(
+            Transform.identity,
+            { method: 'spring', period: 600, dampingRatio: 0.15 }
+        );
+	}
+
 	SlideView.DEFAULT_OPTIONS = {
 		size: [400, 450],
 		filmBorder: 15,
 		photoBorder: 3,
-        photoUrl: SlideData.defaultImage
+        photoUrl: SlideData.defaultImage,
+        angle: -0.5
 	};
 	module.exports = SlideView;
 });

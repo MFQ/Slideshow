@@ -29,7 +29,7 @@ define(function(require, exports, module){
             inOrigin: [0, 0],
             outOrigin: [0, 0],
             showOrigin: [0, 0],
-            inTransform: Transform.thenMove(Transform.rotateX(0.9), [0, -300, 0]),
+            inTransform: Transform.thenMove(Transform.rotateX(0.9), [0, -300, -300]),
             outTransform: Transform.thenMove(Transform.rotateZ(0.7), [0, window.innerHeight, -1000]),
             inTransition: { duration: 650, curve: 'easeOut' },
             outTransition: { duration: 500, curve: Easing.inCubic }
@@ -39,11 +39,18 @@ define(function(require, exports, module){
 	module.exports = SlideshowView;
 
 	SlideshowView.prototype.showCurrentSlide = function(){
+		this.ready = false;
+
 		var slide = this.slides[this.currentIndex];
-        this.lightbox.show(slide);
+        this.lightbox.show(slide, function(){
+        	this.ready = true;
+        	slide.fadeIn();
+        }.bind(this))
 	}
 
 	SlideshowView.prototype.showNextSlide = function(){
+		if (!this.ready) return;
+
 		this.currentIndex++;
 		if(this.currentIndex === this.slides.length)
 			this.currentIndex=0;
