@@ -12,7 +12,7 @@ app.set('view engine', 'html');
 //   res.render('index');
 // });
 
-var server = app.listen(3000, function () {
+var server = app.listen(80, function () {
 
   var host = server.address().address
   var port = server.address().port
